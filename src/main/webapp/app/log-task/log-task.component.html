@@ -1,0 +1,142 @@
+<div class="row" >
+    <div class="col-sm-12">
+        <div class="form-group">
+           <textarea class="form-control rounded-0" maxlength="1000" style="height: 30px;" minlength="1" placeholder="Enter title for the task" id="exampleFormControlTextarea2" rows="3"></textarea>
+        </div>
+         <i class="fa fa-plus" aria-hidden="true">Add to folder/project</i>
+        <hr>
+        </div>
+        </div>
+        <div class="row" style="height: 50px;">
+            <div class="col-sm-2">
+                <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>
+                          </div>
+                
+                      </div>
+                   
+                    <span *ngIf="marked">Completed</span><span *ngIf="!marked">
+                        <select class="browser-default custom-select"  [(ngModel)]='selectedValue'>
+                          <option value="1"> New</option>
+                          <option value="2">InProgress</option>
+                          <option value="3" >Completed</option>
+                          <option value="4">On Hold</option>
+                          <option value="5">Cancelled</option></span>
+                  </div>
+          </div>
+          <div class="col-sm-2">
+            <label>Add Assignee</label>
+            </div>
+          </div>
+        <hr>
+        <div class="row" style="height: 50px;">
+          <div class="col-sm-2">
+            <form>
+              <div class="form-group">
+                  <!-- <i class="fa fa-paperclip">Attach</i> -->
+                <input type="file" (change)="upload($event.target.files)" /><br>
+                              Upload Percent: {{percentDone}}% <br />
+                    <ng-container *ngIf="uploadSuccess"> Upload Successful</ng-container> 
+              </div>
+          </form>
+               
+          </div>
+        
+          <div class="col-sm-2">   
+           <form class="form-inline">
+          <div class="form-group">
+              <div class="input-group">
+                <ng-template #content let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">When do you want this task to be done?</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <!-- <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+                        </ngb-datepicker>
+                        
+                        <ng-template #t let-date let-focused="focused">
+                          <span class="custom-day"
+                                [class.focused]="focused"
+                                [class.range]="isRange(date)"
+                                [class.faded]="isHovered(date) || isInside(date)"
+                                (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null">
+                            {{ date.day }}
+                          </span>
+                        </ng-template>
+                            <hr>
+                           
+                            <input type="text"   [(ngModel)]="fromDate.month" ng-model="fromDate" value=" {{fromDate.day}} " name="fromDate"/>
+                            {{ fromDate.year }} {{fromDate.month}} {{fromDate.day}} 
+                            <pre>From: {{ fromDate | json }} </pre>
+                            <pre>To: {{ toDate | json }} </pre> -->
+                            <label>Dates</label>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="date" [ngModel] ="dt1 | date:'yyyy-MM-dd'" (ngModelChange)="dt1 = $event" [value]="date | date:'yyyy-MM-dd'">
+                                  <!-- {{dt| date:'yyyy-MM-dd'}} -->
+                                  </div>
+                              <div class="col-sm-2">
+                                
+                           </div>
+                            <div class="col-sm-4">
+                              <input type="date" [ngModel] ="dt | date:'yyyy-MM-dd'" (ngModelChange)="dt = $event" [value]="date | date:'yyyy-MM-dd'">
+                            <!-- {{dt| date:'yyyy-MM-dd'}} -->
+                            </div>
+                         </div> 
+
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Save</button>
+
+                  </div>
+                </ng-template>
+                
+                <button class="btn btn-sm" (click)="open(content)">set Date</button>
+                
+                <hr>
+                
+            </div>
+          </div>
+          </form>
+          </div>
+           
+            <br>
+           <div class="col-sm-2">
+              <div class="form-group">
+                  <textarea class="form-control rounded-0" maxlength="1000" style="height: 30px;" minlength="1" placeholder="Enter SubTask"></textarea>
+               </div>
+
+           </div>
+      
+        </div>
+        <hr>
+        <div class="row" >
+         
+          <app-ngx-editor [placeholder]="'Enter task description here'" [spellcheck]="true" [(ngModel)]="htmlContent" height="100px"></app-ngx-editor>
+        </div>
+        
+        <label>Add Assignee</label>
+       
+      
+            <select class="browser-default custom-select">
+              <option selected>Add to Folder/Project</option>
+              <option value="1">Non-Billable</option>
+              <option value="2">SA</option>
+              <option value="3">Shared</option>
+              <option value="4">SIT</option>
+            </select>
+
+            <!-- Testing -->
+            
+                
+               
